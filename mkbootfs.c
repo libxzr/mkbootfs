@@ -79,12 +79,6 @@ static void fix_stat(const char *path, struct stat *s)
         s->st_uid = empty_path_config->uid;
         s->st_gid = empty_path_config->gid;
         s->st_mode = empty_path_config->mode | (s->st_mode & ~07777);
-    } else {
-        // Use the compiled-in fs_config() function.
-        unsigned st_mode = s->st_mode;
-        int is_dir = S_ISDIR(s->st_mode) || strcmp(path, TRAILER) == 0;
-        fs_config(path, is_dir, target_out_path, &s->st_uid, &s->st_gid, &st_mode, &capabilities);
-        s->st_mode = (typeof(s->st_mode)) st_mode;
     }
 }
 
