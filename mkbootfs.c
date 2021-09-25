@@ -179,8 +179,7 @@ static void _archive_dir(char *in, char *out, int ilen, int olen)
     }
 
     while((de = readdir(d)) != 0){
-            /* xxx: feature? maybe some dotfiles are okay */
-        if(de->d_name[0] == '.') continue;
+        if(!strcmp(de->d_name, ".") || !strcmp(de->d_name, "..")) continue;
 
             /* xxx: hack. use a real exclude list */
         if(!strcmp(de->d_name, "root")) continue;
