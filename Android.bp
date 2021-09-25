@@ -1,0 +1,6 @@
+cc_binary {
+    name: "mkbootfs_device",
+    srcs: ["mkbootfs.c"],
+    cflags: ["-Werror"],
+    shared_libs: ["libcutils"],
+}
